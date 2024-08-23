@@ -1,8 +1,19 @@
+import { fetchCustomers, fetchFilteredCustomers } from "@/app/lib/data";
+import { Customer } from "@/app/lib/definitions";
+import CustomersTable from "@/app/ui/customers/table";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: 'Customers',
 };
-export default function Page() {
-    return <p>Customers Page</p>;
+export default async function Page({ searchParams } : { searchParams?: { query?: string }}) {
+    const query = searchParams?.query || ''; 
+    const customers = await fetchFilteredCustomers(query)
+    return (
+        <div className="w-full">
+            <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
+                <CustomersTable customers={customers} />
+            </div>
+        </div>
+    );
 }
