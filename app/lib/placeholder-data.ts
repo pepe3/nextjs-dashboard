@@ -144,4 +144,18 @@ const revenue = [
   { month: 'Dec', revenue: 4800 },
 ];
 
+// Laske keskiarvot tietokannassa olevista mittauksista
+
+const measures = [
+  {
+    entity_id: "sensor.lampotila_ja_kosteusanturi_temperature",
+    state: "22.8",
+    attributes: {
+      unit_of_measurement: "°C",
+      device_class: "temperature",
+      friendly_name: "Olohuone"
+    },
+    last_changed: "2025-09-24T05:22:58.539698+00:00"
+  }
+];
 export { users, customers, invoices, revenue };
