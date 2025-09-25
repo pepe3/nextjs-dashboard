@@ -5,6 +5,7 @@ import {
   InvoiceForm,
   InvoicesTable,
   LatestInvoiceRaw,
+  LatestMeasure,
   Revenue,
 } from './definitions';
 import { formatCurrency } from './utils';
@@ -26,6 +27,12 @@ export async function fetchRevenue() {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch revenue data.');
   }
+}
+
+export async function fetchLatestMeasures() {
+
+  const data = await sql<LatestMeasure>`SELECT * FROM hoas_measures ORDER BY created_at DESC LIMIT 5`;
+  return data.rows;
 }
 
 export async function fetchLatestInvoices() {
