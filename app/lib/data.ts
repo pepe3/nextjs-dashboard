@@ -12,16 +12,8 @@ import { formatCurrency } from './utils';
 
 export async function fetchRevenue() {
   try {
-    // Artificially delay a response for demo purposes.
-    // Don't do this in production :)
-
-    // console.log('Fetching revenue data...');
-    // await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const data = await sql<Revenue>`SELECT * FROM revenue`;
-
-    // console.log('Data fetch completed after 3 seconds.');
-
+    
     return data.rows;
   } catch (error) {
     console.error('Database Error:', error);
@@ -30,6 +22,7 @@ export async function fetchRevenue() {
 }
 
 export async function fetchLatestMeasures() {
+  // await new Promise((resolve) => setTimeout(resolve, 3000));
 
   const data = await sql<LatestMeasure>`SELECT * FROM hoas_measures ORDER BY created_at DESC LIMIT 5`;
   return data.rows;
