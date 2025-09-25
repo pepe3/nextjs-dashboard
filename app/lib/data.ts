@@ -12,7 +12,12 @@ import { formatCurrency } from './utils';
 
 export async function fetchRevenue() {
   try {
-    const data = await sql<Revenue>`SELECT * FROM revenue`;
+    const data = await sql<Revenue>`SELECT 
+      TO_CHAR(created_at, 'Mon') AS month,
+      AVG(value) AS avarage_temperature
+    FROM hoas_measures
+    GROUP BY month, EXTRACT(MONTH FROM created_at)
+    ORDER BY EXTRACT(MONTH FROM created_at)`;
     
     return data.rows;
   } catch (error) {

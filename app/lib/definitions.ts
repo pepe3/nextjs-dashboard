@@ -28,7 +28,7 @@ export type Invoice = {
 
 export type Revenue = {
   month: string;
-  revenue: number;
+  avarage_temperature: number;
 };
 
 export type LatestInvoice = {

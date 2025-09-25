@@ -38,7 +38,7 @@ export default async function LatestMeasures() {
                 <p
                   className={`${lusitana.className} truncate text-sm font-medium md:text-base`}
                 >
-                  {measure.value} {measure.unit}
+                    {Number(measure.value).toFixed(1)} {measure.unit}
                 </p>
               </div>
             );
