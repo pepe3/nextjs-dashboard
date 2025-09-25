@@ -39,22 +39,12 @@ export type LatestInvoice = {
   amount: string;
 };
 
-type TDateISO = string;
-
-interface Date {
-  /**
-   * Give a more precise return type to the method `toISOString()`:
-   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-   */
-  toISOString(): TDateISO;
-}
-
 export type LatestMeasure = {
   id: string; // Unique identifier for the measure
   name: string; // e.g. "Living Room"
   value: string; // e.g. "23.5"
   unit: string; // e.g. "°C", "%", "ppm"
-  created_at?: TDateISO; // ISO date string
+  created_at?: string; // ISO date string
 }
 
 // The database returns a number for amount, but we later format it to a string with the formatCurrency function
