@@ -15,9 +15,10 @@ export async function fetchRevenue() {
     const data = await sql<Revenue>`SELECT 
       TO_CHAR(created_at, 'Mon') AS month,
       AVG(value) AS avarage_temperature
-    FROM hoas_measures
-    GROUP BY month, EXTRACT(MONTH FROM created_at)
-    ORDER BY EXTRACT(MONTH FROM created_at)`;
+      FROM hoas_measures
+      WHERE EXTRACT(YEAR FROM created_at) = 2025
+      GROUP BY month, EXTRACT(MONTH FROM created_at)
+      ORDER BY EXTRACT(MONTH FROM created_at)`;
     
     return data.rows;
   } catch (error) {
