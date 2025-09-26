@@ -1,5 +1,4 @@
 import CardWrapper from '@/app/ui/dashboard/cards';
-import { lusitana } from '@/app/ui/fonts';
 import { Suspense } from 'react';
 import { AvgMeasureChartSkeleton, CardSkeleton, LatestMeasureSkeleton } from '@/app/ui/skeletons';
 import LatestMeasures from '@/app/ui/dashboard/latest-measures';

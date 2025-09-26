@@ -31,14 +31,6 @@ export type Measure = {
   avarage_temperature: number;
 };
 
-export type LatestInvoice = {
-  id: string;
-  name: string;
-  image_url: string;
-  email: string;
-  amount: string;
-};
-
 export type LatestMeasure = {
   id: string; // Unique identifier for the measure
   name: string; // e.g. "Living Room"
@@ -46,11 +38,6 @@ export type LatestMeasure = {
   unit: string; // e.g. "°C", "%", "ppm"
   created_at?: string; // ISO date string
 }
-
-// The database returns a number for amount, but we later format it to a string with the formatCurrency function
-export type LatestInvoiceRaw = Omit<LatestInvoice, 'amount'> & {
-  amount: number;
-};
 
 export type InvoicesTable = {
   id: string;

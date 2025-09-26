@@ -4,7 +4,6 @@ import {
   CustomersTableType,
   InvoiceForm,
   InvoicesTable,
-  LatestInvoiceRaw,
   LatestMeasure,
   Measure,
 } from './definitions';
@@ -32,26 +31,6 @@ export async function fetchLatestMeasures() {
 
   const data = await sql<LatestMeasure>`SELECT * FROM hoas_measures ORDER BY created_at DESC LIMIT 5`;
   return data.rows;
-}
-
-export async function fetchLatestInvoices() {
-  try {
-    const data = await sql<LatestInvoiceRaw>`
-      SELECT invoices.amount, customers.name, customers.image_url, customers.email, invoices.id
-      FROM invoices
-      JOIN customers ON invoices.customer_id = customers.id
-      ORDER BY invoices.date DESC
-      LIMIT 5`;
-
-    const latestInvoices = data.rows.map((invoice) => ({
-      ...invoice,
-      amount: formatCurrency(invoice.amount),
-    }));
-    return latestInvoices;
-  } catch (error) {
-    console.error('Database Error:', error);
-    throw new Error('Failed to fetch the latest invoices.');
-  }
 }
 
 export async function fetchCardData() {
