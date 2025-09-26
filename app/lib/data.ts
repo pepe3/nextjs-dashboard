@@ -71,7 +71,7 @@ export async function fetchCardData() {
 
     const numberOfMeasures = Number(data[0].rows[0].count ?? '0');
     const numberOfLivingRoomMeasures = Number(data[1].rows[0].count ?? '0');
-    const numberOfWorkRoomMeasures = data[2].rows[0].paid ?? '0';
+    const numberOfWorkRoomMeasures = data[2].rows[0].count ?? '0';
 
     return {
       numberOfMeasures,
