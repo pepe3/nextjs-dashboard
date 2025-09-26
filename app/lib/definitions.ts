@@ -26,7 +26,7 @@ export type Invoice = {
   status: 'pending' | 'paid';
 };
 
-export type Revenue = {
+export type Measure = {
   month: string;
   avarage_temperature: number;
 };

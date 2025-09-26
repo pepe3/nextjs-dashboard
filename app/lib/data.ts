@@ -6,13 +6,13 @@ import {
   InvoicesTable,
   LatestInvoiceRaw,
   LatestMeasure,
-  Revenue,
+  Measure,
 } from './definitions';
 import { formatCurrency } from './utils';
 
-export async function fetchRevenue() {
+export async function fetchMeasures() {
   try {
-    const data = await sql<Revenue>`SELECT 
+    const data = await sql<Measure>`SELECT 
       TO_CHAR(created_at, 'Mon') AS month,
       AVG(value) AS avarage_temperature
       FROM hoas_measures

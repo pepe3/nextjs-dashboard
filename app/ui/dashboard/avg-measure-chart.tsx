@@ -1,8 +1,7 @@
 import { generateYAxis } from '@/app/lib/utils';
 import { CalendarIcon } from '@heroicons/react/24/outline';
 import { lusitana } from '@/app/ui/fonts';
-import { Revenue } from '@/app/lib/definitions';
-import { fetchRevenue } from '@/app/lib/data';
+import { fetchMeasures } from '@/app/lib/data';
 
 // This component is representational only.
 // For data visualization UI, check out:
@@ -10,22 +9,11 @@ import { fetchRevenue } from '@/app/lib/data';
 // https://www.chartjs.org/
 // https://airbnb.io/visx/
 
-export default async function RevenueChart() {
-  const months = [
-    { month: 'Jan' },
-    { month: 'Feb' },
-    { month: 'Mar' },
-    { month: 'Apr' },
-    { month: 'May' },
-    { month: 'Jun' },
-    { month: 'Jul' },
-    { month: 'Aug' },
-    { month: 'Sep' },
-    { month: 'Oct' },
-    { month: 'Nov' },
-    { month: 'Dec' },
-  ];
-  const revenue = await fetchRevenue();
+export default async function AvgMeasureChart() {
+  const months = Array.from({ length: 12 }, (_, i) => ({
+    month: new Date(0, i).toLocaleString('en-US', { month: 'short' }),
+  }));
+  const revenue = await fetchMeasures();
 
   const chartHeight = 350;
 
