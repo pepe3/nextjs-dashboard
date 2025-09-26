@@ -26,7 +26,7 @@ export default async function AvgMeasureChart() {
   return (
     <div className="w-full md:col-span-4">
       <h2 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
-        Avarage Temperatures
+        Avarage Temperatures 2025
       </h2>
 
       <div className="rounded-xl bg-gray-50 p-4">

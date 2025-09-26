@@ -60,28 +60,23 @@ export async function fetchCardData() {
     // However, we are intentionally splitting them to demonstrate
     // how to initialize multiple queries in parallel with JS.
     const measuresCountPromise = sql`SELECT COUNT(*) FROM hoas_measures`;
-    const customerCountPromise = sql`SELECT COUNT(*) FROM customers`;
-    const invoiceStatusPromise = sql`SELECT
-         SUM(CASE WHEN status = 'paid' THEN amount ELSE 0 END) AS "paid",
-         SUM(CASE WHEN status = 'pending' THEN amount ELSE 0 END) AS "pending"
-         FROM invoices`;
+    const measureInLivingRoomCountPromise = sql`SELECT COUNT(*) FROM hoas_measures WHERE name = 'livingroom'`;
+    const measuresInWorkRoomCountPromise = sql`SELECT COUNT(*) FROM hoas_measures WHERE name = 'workspace'`;
 
     const data = await Promise.all([
       measuresCountPromise,
-      customerCountPromise,
-      invoiceStatusPromise,
+      measureInLivingRoomCountPromise,
+      measuresInWorkRoomCountPromise,
     ]);
 
     const numberOfMeasures = Number(data[0].rows[0].count ?? '0');
-    const numberOfCustomers = Number(data[1].rows[0].count ?? '0');
-    const totalPaidInvoices = formatCurrency(data[2].rows[0].paid ?? '0');
-    const totalPendingInvoices = formatCurrency(data[2].rows[0].pending ?? '0');
+    const numberOfLivingRoomMeasures = Number(data[1].rows[0].count ?? '0');
+    const numberOfWorkRoomMeasures = data[2].rows[0].paid ?? '0';
 
     return {
-      numberOfCustomers,
       numberOfMeasures,
-      totalPaidInvoices,
-      totalPendingInvoices,
+      numberOfLivingRoomMeasures,
+      numberOfWorkRoomMeasures,
     };
   } catch (error) {
     console.error('Database Error:', error);
