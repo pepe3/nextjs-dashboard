@@ -21,11 +21,11 @@ export const formatDateToLocal = (
   return formatter.format(date);
 };
 
-export const generateYAxis = (revenue: Measure[]) => {
+export const generateYAxis = (measures: Measure[]) => {
   // Calculate what labels we need to display on the y-axis
   // based on highest record and in 1000s
   const yAxisLabels = [];
-  const highestRecord = Math.max(...revenue.map((month) => month.avarage_temperature));
+  const highestRecord = Math.max(...measures.map((month) => month.avarage_temperature));
 
   for (let i = 50; i >= 0; i -= 5) {
     yAxisLabels.push(`${i}°C`);
