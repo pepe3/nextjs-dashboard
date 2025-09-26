@@ -1,8 +1,7 @@
 import CardWrapper from '@/app/ui/dashboard/cards';
-import RevenueChart from '@/app/ui/dashboard/avg-measure-chart';
 import { lusitana } from '@/app/ui/fonts';
 import { Suspense } from 'react';
-import { CardSkeleton, LatestMeasureSkeleton, RevenueChartSkeleton } from '@/app/ui/skeletons';
+import { AvgMeasureChartSkeleton, CardSkeleton, LatestMeasureSkeleton } from '@/app/ui/skeletons';
 import LatestMeasures from '@/app/ui/dashboard/latest-measures';
 import AvgMeasureChart from '@/app/ui/dashboard/avg-measure-chart';
 
@@ -18,7 +17,7 @@ export default async function Page() {
         </Suspense>
       </div>
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
-        <Suspense fallback={<RevenueChartSkeleton />}>
+        <Suspense fallback={<AvgMeasureChartSkeleton />}>
           <AvgMeasureChart />
         </Suspense>
         <Suspense fallback={<LatestMeasureSkeleton />}>
